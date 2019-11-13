@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { filterByKey, including } from "./utils";
 import { DEFAULT_PROPS, EVENT_PROPS } from "./props";
+import * as PIXI from "pixi.js";
 
 export function validateCanvas(props, propName, componentName) {
   // Let's assume that element is canvas if the element is Element and implements getContext
