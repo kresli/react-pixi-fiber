@@ -18,7 +18,7 @@ export function validateCanvas(props, propName, componentName) {
   }
 }
 
-const propTypesImplicitApp = {
+export const propTypes = {
   options: PropTypes.shape({
     antialias: PropTypes.bool,
     autoStart: PropTypes.bool,
@@ -38,16 +38,11 @@ const propTypesImplicitApp = {
     view: validateCanvas,
     width: PropTypes.number,
   }),
+  app: PropTypes.instanceOf(PIXI.Application),
   children: PropTypes.node,
   height: PropTypes.number,
   width: PropTypes.number,
 };
-
-const propTypesExplicitApp = {
-  app: PropTypes.instanceOf(PIXI.Application),
-};
-
-export const propTypes = PropTypes.oneOfType([propTypesImplicitApp, propTypesExplicitApp]);
 
 export const includingDisplayObjectProps = including(Object.keys(DEFAULT_PROPS).concat(EVENT_PROPS));
 export const includingStageProps = including(Object.keys(propTypes));

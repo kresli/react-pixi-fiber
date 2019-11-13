@@ -70,10 +70,10 @@ export function createStageFunction() {
 export function createStageClass() {
   class Stage extends React.Component {
     componentDidMount() {
-      const { height, options, width } = this.props;
+      const { height, options, width, app } = this.props;
       const view = this._canvas;
 
-      this._app = this.props.app || createPixiApplication({ height, width, view, ...options });
+      this._app = app || createPixiApplication({ height, width, view, ...options });
 
       // Apply root Container props
       applyUpdate(this._app, this.props, this);
