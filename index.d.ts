@@ -1,21 +1,22 @@
-import * as React from 'react';
-import * as PIXI from 'pixi.js';
-import {InteractiveComponent} from "react-pixi-fiber";
+import * as React from "react";
+import * as PIXI from "pixi.js";
+import { InteractiveComponent } from "react-pixi-fiber";
 
-declare module 'react-pixi-fiber' {
-
+declare module "react-pixi-fiber" {
   /**
    * An object with keys in T not in U.
    *
    * Attribution: https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-377567046
    */
-  export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+  export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
   /** The shape of an object that has an optional `children` property of any type. */
-  interface ObjectWithChildren { children?: any; }
+  interface ObjectWithChildren {
+    children?: any;
+  }
 
   /** The shape of `T` without it's `children` property. */
-  export type Childless<T extends ObjectWithChildren> = Omit<T, 'children'>;
+  export type Childless<T extends ObjectWithChildren> = Omit<T, "children">;
 
   /** The shape of a component that has an optional `children` property. */
   export interface ChildrenProperties {
@@ -101,7 +102,8 @@ declare module 'react-pixi-fiber' {
   export class Graphics extends React.Component<GraphicsProperties> {}
 
   /** `ParticleContainer` component properties. */
-  export interface ParticleContainerProperties extends ChildlessComponent<PIXI.particles.ParticleContainer & InteractiveComponent> {}
+  export interface ParticleContainerProperties
+    extends ChildlessComponent<PIXI.particles.ParticleContainer & InteractiveComponent> {}
 
   /**
    * A component wrapper for `PIXI.particles.ParticleContainer`.
@@ -121,7 +123,7 @@ declare module 'react-pixi-fiber' {
   export class Sprite extends React.Component<SpriteProperties> {}
 
   /** `Text` component properties */
-  export interface TextProperties extends ChildlessComponent<Omit<PIXI.Text, 'anchor'> & InteractiveComponent> {
+  export interface TextProperties extends ChildlessComponent<Omit<PIXI.Text, "anchor"> & InteractiveComponent> {
     anchor?: string | number[] | PIXI.ObservablePoint;
   }
 
@@ -146,7 +148,11 @@ declare module 'react-pixi-fiber' {
 
   /** `Stage` component properties." */
   export interface StageProperties extends Component<PIXI.Container & InteractiveComponent> {
-    options?: {}
+    options?: {};
+  }
+
+  export interface StagePropertiesExplitiApp extends Component<PIXI.Container & InteractiveComponent> {
+    app: PIXI.Application;
   }
 
   /**
@@ -154,10 +160,14 @@ declare module 'react-pixi-fiber' {
    *
    * see: http://pixijs.download/dev/docs/PIXI.Application.html
    */
-  export class Stage extends React.Component<StageProperties> {}
+  export class Stage extends React.Component<StageProperties | StagePropertiesExplitiApp> {}
 
   /** Custom React Reconciler render method. */
-  export function render(pixiElement: React.ReactElement<any> | React.ReactElement<any>[] | PIXI.DisplayObject | PIXI.DisplayObject[], stage: PIXI.Container, callback?: Function): void;
+  export function render(
+    pixiElement: React.ReactElement<any> | React.ReactElement<any>[] | PIXI.DisplayObject | PIXI.DisplayObject[],
+    stage: PIXI.Container,
+    callback?: Function
+  ): void;
 
   /**
    * Custom component properties.
@@ -205,4 +215,3 @@ declare module 'react-pixi-fiber' {
   export function unstable_batchedUpdates<A>(callback: (a: A) => any, a: A): void;
   export function unstable_batchedUpdates(callback: () => any): void;
 }
-

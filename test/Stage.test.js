@@ -3,10 +3,7 @@ import ReactDOM from "react-dom";
 import renderer from "react-test-renderer";
 import * as PIXI from "pixi.js";
 import { Text } from "../src/index";
-import {
-  createStageFunction,
-  createStageClass,
-} from "../src/Stage";
+import { createStageFunction, createStageClass } from "../src/Stage";
 import {
   getCanvasProps,
   getDisplayObjectProps,
@@ -555,4 +552,18 @@ describe("getDisplayObjectProps", () => {
     };
     expect(getDisplayObjectProps(allProps)).toEqual(displayObjectProps);
   });
+});
+
+it("pass pixi app in option", () => {
+  const StageClass = createStageClass();
+  const options = {
+    backgroundColor: 0xff00ff,
+    sharedTicker: true,
+  };
+  const app = new PIXI.Application(options);
+
+  const element = renderer.create(<StageClass app={app} />);
+  const instance = element.getInstance();
+
+  expect(instance._app).toBe(app);
 });
