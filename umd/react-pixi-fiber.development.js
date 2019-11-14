@@ -2,7 +2,7 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('prop-types'), require('pixi.js'), require('scheduler')) :
   typeof define === 'function' && define.amd ? define(['exports', 'react', 'prop-types', 'pixi.js', 'scheduler'], factory) :
   (global = global || self, factory(global.ReactPixiFiber = {}, global.React, global.PropTypes, global.PIXI, global.Scheduler));
-}(this, function (exports, React, PropTypes, PIXI$1, scheduler) { 'use strict';
+}(this, function (exports, React, PropTypes, PIXI, scheduler) { 'use strict';
 
   var React__default = 'default' in React ? React['default'] : React;
   PropTypes = PropTypes && PropTypes.hasOwnProperty('default') ? PropTypes['default'] : PropTypes;
@@ -460,7 +460,7 @@
   /* PIXI related Methods */
 
   function createPixiApplication(options) {
-    return new PIXI$1.Application(options);
+    return new PIXI.Application(options);
   } // Converts value to an array of coordinates
 
   function parsePoint(value) {
@@ -482,7 +482,7 @@
     return arr.map(Number);
   }
   function isPointType(value) {
-    return value instanceof PIXI$1.Point || value instanceof PIXI$1.ObservablePoint;
+    return value instanceof PIXI.Point || value instanceof PIXI.ObservablePoint;
   } // Use Point.copyFrom if available because Point.copy was deprecated in PIXI 5.0
 
   function copyPoint(instance, propName, value) {
@@ -16349,43 +16349,43 @@
     switch (type) {
       case TYPES.BITMAP_TEXT:
         try {
-          instance = new PIXI$1.extras.BitmapText(props.text, props.style);
+          instance = new PIXI.extras.BitmapText(props.text, props.style);
         } catch (e) {
-          instance = new PIXI$1.BitmapText(props.text, props.style);
+          instance = new PIXI.BitmapText(props.text, props.style);
         }
 
         break;
 
       case TYPES.CONTAINER:
-        instance = new PIXI$1.Container();
+        instance = new PIXI.Container();
         break;
 
       case TYPES.GRAPHICS:
-        instance = new PIXI$1.Graphics();
+        instance = new PIXI.Graphics();
         break;
 
       case TYPES.PARTICLE_CONTAINER:
         try {
-          instance = new PIXI$1.particles.ParticleContainer(props.maxSize, props.properties, props.batchSize, props.autoResize);
+          instance = new PIXI.particles.ParticleContainer(props.maxSize, props.properties, props.batchSize, props.autoResize);
         } catch (e) {
-          instance = new PIXI$1.ParticleContainer(props.maxSize, props.properties, props.batchSize, props.autoResize);
+          instance = new PIXI.ParticleContainer(props.maxSize, props.properties, props.batchSize, props.autoResize);
         }
 
         break;
 
       case TYPES.SPRITE:
-        instance = new PIXI$1.Sprite(props.texture);
+        instance = new PIXI.Sprite(props.texture);
         break;
 
       case TYPES.TEXT:
-        instance = new PIXI$1.Text(props.text, props.style, props.canvas);
+        instance = new PIXI.Text(props.text, props.style, props.canvas);
         break;
 
       case TYPES.TILING_SPRITE:
         try {
-          instance = new PIXI$1.extras.TilingSprite(props.texture, props.width, props.height);
+          instance = new PIXI.extras.TilingSprite(props.texture, props.width, props.height);
         } catch (e) {
-          instance = new PIXI$1.TilingSprite(props.texture, props.width, props.height);
+          instance = new PIXI.TilingSprite(props.texture, props.width, props.height);
         }
 
         break;
